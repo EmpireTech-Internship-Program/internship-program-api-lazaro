@@ -12,6 +12,7 @@ class Person extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'fullname',
         'date_of_birth',
         'cpf',

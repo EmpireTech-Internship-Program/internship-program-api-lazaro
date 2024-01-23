@@ -12,13 +12,15 @@ class Agency extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
+        'bank_name',
         'name',
         'number',
         'address',
         'code'
     ];
 
-    public function banks()
+    public function bank()
     {
         return $this->belongsTo(Bank::class);
     }

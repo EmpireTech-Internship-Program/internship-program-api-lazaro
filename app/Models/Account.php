@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Faker\Provider\ar_SA\Person;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +12,9 @@ class Account extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
+        'person_cpf',
+        'agency_name',
         'type',
         'number',
         'holder',
@@ -20,13 +22,13 @@ class Account extends Model
         'opening_date'
     ];
 
-    public function agencies()
+    public function agency()
     {
         return $this->belongsTo(Agency::class);
     }
 
-    public function people()
+    public function person()
     {
-        return $this->hasMany(Person::class);
+        return $this->belongsTo(Person::class);
     }
 }
