@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('bank_name');
             $table->string('name')->unique();
             $table->integer('number');
             $table->string('address');
             $table->integer('code');
             $table->timestamps();
-            $table->softDeletes();
 
-            $table->foreign('bank_name')->references('name')->on('banks')->onUpdate('cascade');
+            $table->foreign('bank_name')->references('name')->on('banks')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

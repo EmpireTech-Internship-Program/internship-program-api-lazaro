@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -20,6 +18,11 @@ class Person extends Model
         'phone_number',
         'email'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function accounts()
     {

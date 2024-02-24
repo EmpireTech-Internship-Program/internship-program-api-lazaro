@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Agency extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -20,9 +18,14 @@ class Agency extends Model
         'code'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function bank()
     {
-        return $this->belongsTo(Bank::class);
+        return $this->belongsTo(Bank::class, 'bank_name', 'name');
     }
 
     public function accounts()

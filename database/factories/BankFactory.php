@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\bankModel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Bank>
  */
-class BankModelFactory extends Factory
+class BankFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +18,9 @@ class BankModelFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::all()->random()->id,
+            'name' => $this->faker->company,
+            'code' => $this->faker->numberBetween(1000, 9999)
         ];
     }
 }
