@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\Agency;
 use App\Repositories\AbstractRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class AgencyRepository extends AbstractRepository
 {
@@ -19,7 +18,7 @@ class AgencyRepository extends AbstractRepository
         return $this->model::with('user', 'bank')->get();
     }
 
-    public function getAgencyByName(string $name): ?Model
+    public function getAgencyByName(string $name): ?Agency
     {
         return $this->model::where('name', $name)->first();
     }

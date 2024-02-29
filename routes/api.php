@@ -28,6 +28,7 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user/{user}', [UserController::class, 'show']);
+        Route::post('/profile/{user}', [UserController::class,'upload']);
         Route::put('/profile/{user}', [UserController::class, 'update']);
         Route::apiResource('/banks', BankController::class);
         Route::apiResource('/agencies', AgencyController::class);

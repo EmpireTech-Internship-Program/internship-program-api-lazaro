@@ -34,4 +34,9 @@ class UserService
     {
         return $this->repository->update($id, $data);
     }
+
+    public function getByEmail(string $email): ?User
+    {
+        return $this->repository->getByEmail($email);
+    }
 }

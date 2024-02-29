@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\Bank;
 use App\Repositories\AbstractRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class BankRepository extends AbstractRepository
 {
@@ -18,7 +17,7 @@ class BankRepository extends AbstractRepository
         return $this->model::with('user')->get();
     }
 
-    public function getBankByName(string $name): ?Model
+    public function getBankByName(string $name): ?Bank
     {
         return $this->model::where('name', $name)->first();
     }

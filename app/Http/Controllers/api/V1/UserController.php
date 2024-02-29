@@ -89,10 +89,34 @@ class UserController extends Controller
             }
 
             $validator = Validator::make($request->all(), [
-                'profile_picture' => 'required|mimes:png,jpg,jpeg',
                 'userID' => 'required|string'
             ]);
 
+            if ($validator->fails()) {
+                return $this->error('data invalid', 422, $validator->errors());
+            }
+
+            $this->service->update($user->__get('id'), $request->all());
+            return response()->json(['message' => 'Updated successfully', 'user' => (new UserResource($this->service->find($id)))]);
+        } catch (Exception $exception) {
+            Log::error("An error occurred during on update. Details: {$exception->getMessage()}");
+            return response()->json(['error' => 'An error occurred during on update.'], 500);
+        }
+    }
+
+    public function upload(Request $request, string $id)
+    {
+        try {
+            $user = $this->service->find($id);
+            if (!$user) {
+                return $this->error('User not found', 200);
+            }
+
+            $validator = Validator::make($request->all(), [
+                'profile_picture' => 'required|mimes:png,jpg,jpeg',
+            ]);
+
+            
             if ($validator->fails()) {
                 return $this->error('data invalid', 422, $validator->errors());
             }

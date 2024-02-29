@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\Person;
 use App\Repositories\AbstractRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class PersonRepository extends AbstractRepository
 {
@@ -18,7 +17,7 @@ class PersonRepository extends AbstractRepository
         return $this->model::with('user')->get();
     }
 
-    public function getPeopleByName(string $name): ?Model
+    public function getPeopleByName(string $name): ?Person
     {
         return $this->model::where('name', $name)->first();
     }
